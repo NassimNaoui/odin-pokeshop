@@ -1,16 +1,12 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import OnlineStore from "./pages/OnlineStore";
+import Loader from "./pages/Loader.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [loaderActive, setLoaderActive] = useState(false);
 
-  return (
-    <>
-      <div className="text-red-400">test</div>
-    </>
-  );
+  return loaderActive ? Loader() : OnlineStore();
 }
 
 export default App;
