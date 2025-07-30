@@ -6,7 +6,11 @@ import Loader from "./pages/Loader.jsx";
 function App() {
   const [loaderActive, setLoaderActive] = useState(false);
 
-  return loaderActive ? Loader() : OnlineStore();
+  if (loaderActive) {
+    return <Loader />;
+  } else {
+    return <OnlineStore />;
+  }
 }
 
 export default App;

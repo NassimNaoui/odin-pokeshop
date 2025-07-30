@@ -1,6 +1,6 @@
 import background from "../assets/LOADER-POKESHOP.png"; // <-- import JS correct
 
-function Loader() {
+export default function Loader() {
   const style = {
     backgroundImage: `url(${background})`,
     height: "100vh",
@@ -16,5 +16,3 @@ function Loader() {
     </>
   );
 }
-
-export default Loader;
