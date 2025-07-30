@@ -12,36 +12,42 @@ const avatarMap = {
   cinthyia,
   red,
 };
-export default function Header({ avatar, searchBar, setSearchBar }) {
+export default function Header({
+  avatar,
+  searchBar,
+  setSearchBar,
+  searchValue,
+  setSearchValue,
+}) {
   const avatarToUse = avatarMap[avatar] || "";
   const displayOption = searchBar === false ? "none" : "block";
-  console.log(`from header :${searchBar}`);
-  console.log(`from header - displayOption:${searchBar}`);
 
   return (
     <header className="relative flex items-center justify-center">
       {/* Overlay semi-transparent */}
       <div className="absolute inset-0 bg-indigo-300 opacity-50 z-0"></div>
       {/* Container search bar and icons */}
-      <div className="flex w-full h-full justify-center p-[10px]">
+      <div className="flex w-full h-full justify-end items-center p-[10px]">
         {/* Contenu du header */}
         <input
           style={{ display: `${displayOption}` }}
-          className="relative z-10 border border-gray-300 bg-neutral-50 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="relative z-10 flex-[0_1_300px] min-w-[50px] mr-8 p-1 border border-gray-300 bg-neutral-50 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e)}
         ></input>
         {/* search bar*/}
-        <div className="relative flex justify-end items-center gap-3 z-10 w-full text-center">
+        <div className="relative flex justify-end items-center gap-3 z-10 text-center">
           <div
-            className="h-[36px] w-[36px] cursor-pointer bg-no-repeat bg-center bg-contain hover:border-b border-b-indigo-500"
+            className="h-[36px] w-[36px] cursor-pointer bg-no-repeat bg-center bg-contain hover:border-b-3 border-b-indigo-500"
             style={{ backgroundImage: `url(${search})` }}
             onClick={() => setSearchBar()}
           ></div>
           <div
-            className="h-[36px] w-[36px] cursor-pointer bg-no-repeat bg-center bg-contain hover:border-b border-b-indigo-500"
+            className="h-[36px] w-[36px] cursor-pointer bg-no-repeat bg-center bg-contain hover:border-b-3 border-b-indigo-500"
             style={{ backgroundImage: `url(${heart})` }}
           ></div>
           <div
-            className="h-[36px] w-[36px] cursor-pointer bg-no-repeat bg-center bg-contain hover:border-b border-b-indigo-500"
+            className="h-[36px] w-[36px] cursor-pointer bg-no-repeat bg-center bg-contain hover:border-b-3 border-b-indigo-500"
             style={{ backgroundImage: `url(${shopbag})` }}
           ></div>
           <div

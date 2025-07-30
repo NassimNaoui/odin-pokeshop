@@ -15,10 +15,11 @@ export default function OnlineStore() {
     gridTemplateRows: "0.2fr 2.6fr 0.2fr",
   };
 
-  const [avatar, setavAtar] = useState("cinthyia");
+  const [avatar, setavAtar] = useState("red");
   const [searchBar, setSearchBar] = useState(true);
+  const [searchValue, setSearchValue] = useState("");
 
-  console.log(`from online :${searchBar}`);
+  // console.log(`from online - search value:${searchValue}`);
 
   return (
     <>
@@ -27,6 +28,8 @@ export default function OnlineStore() {
           avatar={avatar}
           searchBar={searchBar}
           setSearchBar={() => setSearchBar(!searchBar)}
+          searchValue={searchValue}
+          setSearchValue={(e) => setSearchValue(e.target.value)}
         />
         <main></main>
         <footer></footer>
