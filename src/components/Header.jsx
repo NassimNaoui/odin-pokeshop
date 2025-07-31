@@ -14,6 +14,7 @@ const avatarMap = {
 };
 export default function Header({
   avatar,
+  setAvatarCard,
   searchBar,
   setSearchBar,
   searchValue,
@@ -51,6 +52,7 @@ export default function Header({
             style={{ backgroundImage: `url(${shopbag})` }}
           ></div>
           <div
+            onClick={setAvatarCard}
             className="h-[36px] w-[36px] cursor-pointer rounded-full bg-red-500 border-[2px] border-white hover:border-indigo-500"
             style={{
               backgroundImage: `url(${avatarToUse})`,

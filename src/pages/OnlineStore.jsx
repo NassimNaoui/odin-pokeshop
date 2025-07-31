@@ -4,6 +4,7 @@ import { useState } from "react";
 import background from "../assets/POKESHOP.png";
 /* components */
 import Header from "../components/Header";
+import Main from "../components/Main";
 
 export default function OnlineStore() {
   const style = {
@@ -15,7 +16,8 @@ export default function OnlineStore() {
     gridTemplateRows: "0.2fr 2.6fr 0.2fr",
   };
 
-  const [avatar, setavAtar] = useState("red");
+  const [avatar, setAvatar] = useState("red");
+  const [avatarCard, setAvatarCard] = useState(false);
   const [searchBar, setSearchBar] = useState(true);
   const [searchValue, setSearchValue] = useState("");
 
@@ -26,12 +28,18 @@ export default function OnlineStore() {
       <div style={style}>
         <Header
           avatar={avatar}
+          setAvatarCard={() => setAvatarCard(!avatarCard)}
           searchBar={searchBar}
           setSearchBar={() => setSearchBar(!searchBar)}
           searchValue={searchValue}
           setSearchValue={(e) => setSearchValue(e.target.value)}
         />
-        <main></main>
+        <Main
+          avatar={avatar}
+          setAvatar={(e) => setAvatar(e.currentTarget.dataset.name)}
+          avatarCard={avatarCard}
+          setAvatarCard={() => setAvatarCard(!avatarCard)}
+        ></Main>
         <footer></footer>
       </div>
     </>
