@@ -1,22 +1,59 @@
-export default function Main({ avatar, setAvatar, avatarCard, setAvatarCard }) {
+export default function Main({
+  avatar,
+  setAvatar,
+  avatarCard,
+  setAvatarCard,
+  catalogueItems,
+}) {
   return (
     <>
       <main className="flex justify-center items-center h-full w-full bg-amber-400 ">
-        <div className="flex justify-around items-center h-[98%] w-[98%] bg-red-400">
-          <div className=" h-[90%] w-[70%] bg-blue-300"></div>
-          <div className=" h-[90%] w-[25%] bg-green-200">
+        <div className="flex justify-between  h-[98%] w-[98%] bg-red-400">
+          <div className="  bg-blue-300">
+            <ListItemsCategory catalogueItems={catalogueItems} />
+            {/*<ListItemsName catalogueItems={catalogueItems} />*/}
+          </div>
+          <div className="  bg-green-200">
             {avatarCard && (
-              <AvatarChoice
-                avatar={avatar}
-                setAvatar={setAvatar}
-                setAvatarCard={setAvatarCard}
-              />
+              <div className="flex justify-end border-2 bg-gray-50 border-neutral-400 shadow-lg rounded-2xl">
+                <AvatarChoice
+                  avatar={avatar}
+                  setAvatar={setAvatar}
+                  setAvatarCard={setAvatarCard}
+                />
+              </div>
             )}
           </div>
         </div>
       </main>
     </>
   );
+}
+
+function ListItemsCategory({ catalogueItems }) {
+  const categories = catalogueItems.map((items) => items.category);
+  const set = new Set(categories);
+  const uniqueCategories = [...set];
+
+  const listCategories = uniqueCategories.map((category) => (
+    <>
+      <button className="p-1" key={category}>
+        {category}
+      </button>
+    </>
+  ));
+
+  return <div>{listCategories}</div>;
+}
+
+function ListItemsName({ catalogueItems }) {
+  const listitems = catalogueItems.map((items) => (
+    <>
+      <div key={items.name}>{items.name}</div>
+    </>
+  ));
+
+  return <div>{listitems}</div>;
 }
 
 /* avatar */
@@ -28,11 +65,14 @@ const avatarMap = { peter: peter, cinthyia: cinthyia, red: red };
 
 function AvatarChoice({ avatar, setAvatar, setAvatarCard }) {
   const filteredAvatar = Object.fromEntries(
-    Object.entries(avatarMap).filter(([key]) => key !== avatar)
+    Object.entries(avatarMap).filter(([key]) => key.toLowerCase() !== avatar)
   );
   const listAvatar = Object.entries(filteredAvatar).map(([name, src]) => (
     <>
-      <div key={name} className="flex items-center gap-2.5">
+      <div
+        key={name}
+        className="flex items-center gap-2.5 p-2 rounded-2xl hover:bg-indigo-50"
+      >
         <div
           data-name={name}
           onClick={(e) => {
@@ -46,7 +86,9 @@ function AvatarChoice({ avatar, setAvatar, setAvatarCard }) {
             backgroundPosition: "center",
           }}
         ></div>
-        <div className="">{name}</div>
+        <div className="font-medium">
+          {name.charAt(0).toUpperCase() + name.slice(1)}
+        </div>
       </div>
     </>
   ));

@@ -6,7 +6,7 @@ import background from "../assets/POKESHOP.png";
 import Header from "../components/Header";
 import Main from "../components/Main";
 
-export default function OnlineStore() {
+export default function OnlineStore({ catalogueItems }) {
   const style = {
     backgroundImage: `url(${background})`,
     height: "100vh",
@@ -39,6 +39,7 @@ export default function OnlineStore() {
           setAvatar={(e) => setAvatar(e.currentTarget.dataset.name)}
           avatarCard={avatarCard}
           setAvatarCard={() => setAvatarCard(!avatarCard)}
+          catalogueItems={catalogueItems}
         ></Main>
         <footer></footer>
       </div>
