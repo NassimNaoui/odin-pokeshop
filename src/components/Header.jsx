@@ -53,7 +53,7 @@ export default function Header({
           ></div>
           <div
             onClick={setAvatarCard}
-            className="h-[36px] w-[36px] cursor-pointer rounded-full bg-red-500 border-[2px] border-white hover:border-indigo-500"
+            className=" h-[36px] w-[36px] cursor-pointer rounded-full bg-red-500 border-[2px] border-white hover:border-indigo-500"
             style={{
               backgroundImage: `url(${avatarToUse})`,
               backgroundSize: "cover",

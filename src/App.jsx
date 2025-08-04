@@ -7,8 +7,10 @@ import items from "./data/pokemonItemsNameShort.json";
 //const items = ["master-ball", "moomoo-milk", "ultra-ball"];
 
 function App() {
-  const [loaderActive, setLoaderActive] = useState(false);
+  const [loaderActive, setLoaderActive] = useState(true);
   const [catalogueItems, setcatalogueItems] = useState([]);
+  const [endFetching, setendFetching] = useState(false);
+  const [uniqueCategories, setuniqueCategories] = useState([]);
 
   useEffect(() => {
     const fetchAllItems = async () => {
@@ -48,16 +50,33 @@ function App() {
         setcatalogueItems(cleanedResults);
       } catch (error) {
         console.error("Erreur lors de la récupération des items :", error);
+      } finally {
+        setendFetching(true);
+
+        setTimeout(() => {
+          setLoaderActive(!loaderActive);
+        }, "3000");
       }
     };
 
     fetchAllItems();
   }, []);
 
+  useEffect(() => {
+    setuniqueCategories(
+      [...new Set(catalogueItems.map((item) => item.category))].sort()
+    );
+  }, [endFetching]);
+
   if (loaderActive) {
     return <Loader />;
   } else {
-    return <OnlineStore catalogueItems={catalogueItems} />;
+    return (
+      <OnlineStore
+        catalogueItems={catalogueItems}
+        uniqueCategories={uniqueCategories}
+      />
+    );
   }
 }
 

@@ -6,7 +6,7 @@ import background from "../assets/POKESHOP.png";
 import Header from "../components/Header";
 import Main from "../components/Main";
 
-export default function OnlineStore({ catalogueItems }) {
+export default function OnlineStore({ catalogueItems, uniqueCategories }) {
   const style = {
     backgroundImage: `url(${background})`,
     height: "100vh",
@@ -16,12 +16,12 @@ export default function OnlineStore({ catalogueItems }) {
     gridTemplateRows: "0.2fr 2.6fr 0.2fr",
   };
 
+  console.log(catalogueItems);
   const [avatar, setAvatar] = useState("red");
   const [avatarCard, setAvatarCard] = useState(false);
-  const [searchBar, setSearchBar] = useState(true);
+  const [searchBar, setSearchBar] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-
-  // console.log(`from online - search value:${searchValue}`);
+  const [selectedCategory, setselectedCategory] = useState("");
 
   return (
     <>
@@ -40,6 +40,13 @@ export default function OnlineStore({ catalogueItems }) {
           avatarCard={avatarCard}
           setAvatarCard={() => setAvatarCard(!avatarCard)}
           catalogueItems={catalogueItems}
+          uniqueCategories={uniqueCategories}
+          selectedCategory={selectedCategory}
+          setselectedCategory={(e) =>
+            e.target.textContent === selectedCategory
+              ? setselectedCategory("")
+              : setselectedCategory(e.target.textContent)
+          }
         ></Main>
         <footer></footer>
       </div>
