@@ -4,8 +4,6 @@ import OnlineStore from "./pages/OnlineStore";
 import Loader from "./pages/Loader.jsx";
 import items from "./data/pokemonItemsNameShort.json";
 
-//const items = ["master-ball", "moomoo-milk", "ultra-ball"];
-
 function App() {
   const [loaderActive, setLoaderActive] = useState(true);
   const [catalogueItems, setcatalogueItems] = useState([]);

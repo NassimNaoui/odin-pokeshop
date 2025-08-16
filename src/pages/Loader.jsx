@@ -9,10 +9,8 @@ export default function Loader() {
   };
 
   return (
-    <>
-      <body style={style}>
-        <h1>test loader</h1>
-      </body>
-    </>
+    <div style={style}>
+      <div className="animate-pulse">Loading...</div>
+    </div>
   );
 }
